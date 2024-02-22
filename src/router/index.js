@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import { useJobsStore } from '@/stores/jobs';
 import HomeView from '@/views/HomeView.vue';
+import JobView from '@/views/JobView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -14,29 +16,32 @@ const router = createRouter({
     {
       path: '/job/:id',
       name: 'job',
-      component: () => import('@/views/JobView.vue'),
+      component: JobView,
       props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
-      beforeEnter(to) {
-        const jobsStore = useJobsStore();
-
-        const doesDataExist = Boolean(jobsStore.getJobById(parseInt(to.params.id)));
-
-        if (!doesDataExist) {
-          return {
-            name: 'notFound',
-            params: { pathMatch: to.path.split('/').slice(1) },
-            query: to.query,
-            hash: to.hash,
-          };
-        }
-      },
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
-      component: () => import('@/views/NotFoundView.vue'),
+      component: NotFoundView,
     },
   ],
+});
+
+router.beforeEach((to) => {
+  if (to.name === 'job') {
+    const jobsStore = useJobsStore();
+
+    const doesDataExist = Boolean(jobsStore.getJobById(parseInt(to.params.id)));
+
+    if (!doesDataExist) {
+      router.replace({
+        name: 'notFound',
+        params: { pathMatch: to.path.split('/').slice(1) },
+        query: to.query,
+        hash: to.hash,
+      });
+    }
+  }
 });
 
 export default router;
