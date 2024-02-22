@@ -1,0 +1,121 @@
+@font-face {
+  font-family: MartianMono;
+  src: url('/font/MartianMonoVF.woff2') format('woff2');
+  font-weight: 100 800;
+  font-stretch: 75% 112.5%;
+}
+
+:root,
+::backdrop {
+  --white: #fff;
+  --black: #101820;
+  --yellow: #fee715;
+  --red: #be5944;
+  --green: #0cb877;
+  --blue: #152cfe;
+  --gray: #96b1ad;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  min-height: 100%;
+  font-family: MartianMono, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: normal;
+  color: var(--black);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(to bottom, var(--green) 0 20rem, var(--white) 20rem 100%);
+  background-repeat: no-repeat;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+#app {
+  max-width: 96rem;
+  min-width: 32rem;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--green);
+  border-radius: 5px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 0.5rem;
+}
+
+.button {
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: var(--white);
+  font-family: inherit;
+  max-width: 25rem;
+  color: var(--green);
+  border: 1px solid var(--green);
+  border-radius: 5px;
+  padding: 0.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.button:focus-visible {
+  outline: none;
+  color: var(--white);
+  background-color: var(--black);
+  border-color: var(--black);
+}
+
+.button--primary {
+  padding: 2rem;
+  border-width: 2px;
+  box-shadow: 5px 5px 0 var(--black);
+}
+
+.button--primary:focus-visible {
+  box-shadow: 5px 5px 0 var(--green);
+}
+
+@media (hover: hover) {
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .button:hover {
+    color: var(--white);
+    background-color: var(--black);
+    border-color: var(--black);
+  }
+
+  .button--primary:hover {
+    box-shadow: 5px 5px 0 var(--green);
+  }
+}
+
