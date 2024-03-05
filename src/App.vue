@@ -1,13 +1,13 @@
 <script setup>
-import { RouterView, RouterLink } from 'vue-router';
+import { RouterView } from 'vue-router';
+import TheHeader from '@/components/TheHeader.vue';
+import TheFooter from '@/components/TheFooter.vue';
 </script>
 
 <template>
-  <main class="main">
-    <h1 class="main__heading">
-      <RouterLink :to="{ name: 'home' }">Dream Job</RouterLink>
-    </h1>
+  <TheHeader />
 
+  <main class="main container">
     <button
       v-if="$route.name !== 'home'"
       class="button button--primary main__button main__button--go-back"
@@ -19,6 +19,8 @@ import { RouterView, RouterLink } from 'vue-router';
 
     <RouterView />
   </main>
+
+  <TheFooter />
 </template>
 
 <style scoped>
@@ -26,20 +28,8 @@ import { RouterView, RouterLink } from 'vue-router';
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 3rem;
+  gap: 2rem;
   position: relative;
-  padding-top: 16rem;
-}
-.main__heading {
-  margin: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 4rem;
-  text-shadow: 2px 2px 0 var(--black);
-}
-.main__heading a {
-  color: var(--white);
 }
 
 .main__button--go-back {

@@ -1,10 +1,10 @@
 <script setup>
 import TheFilters from '@/components/TheFilters.vue';
-import TheJobs from '@/components/TheJobs.vue';
+import JobList from '@/components/JobList.vue';
 </script>
 
 <template>
   <TheFilters />
-  <TheJobs />
+  <JobList />
 </template>
 

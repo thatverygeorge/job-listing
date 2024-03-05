@@ -25,7 +25,7 @@ const filtersStore = useFiltersStore();
 
       <span v-if="props.job.isFeatured" class="visually-hidden">this job is featured</span>
 
-      <ul class="meta-list job-card__meta-list" aria-label="meta information" role="list">
+      <ul class="meta-list job-card__meta-list" aria-label="meta information">
         <li class="meta-list__item">
           <time :datetime="props.job.date">
             {{ new Intl.DateTimeFormat('en-US').format(new Date(props.job.date)) }}
@@ -49,7 +49,7 @@ const filtersStore = useFiltersStore();
       role="presentation"
     />
 
-    <ul class="tag-list job-card__tag-list" aria-label="tags" role="list">
+    <ul class="tag-list job-card__tag-list" aria-label="tags">
       <li class="tag-list__item" v-for="tag in props.job.tags" :key="tag">
         <button class="button tag-list__button" type="button" @click="filtersStore.addFilter(tag)">
           <span class="visually-hidden">add filter: {{ tag }}</span>
@@ -63,27 +63,27 @@ const filtersStore = useFiltersStore();
 <style>
 .job-card {
   padding: 2rem;
-  padding-left: calc(2rem + 5px);
+  padding-left: calc(2rem + 10px);
   display: grid;
   grid-template-columns: min-content 1fr 1fr;
   align-items: center;
   gap: 2rem;
-  border: 1px solid var(--green);
+  border: 1px solid var(--black);
   border-radius: 5px;
-  box-shadow: 5px 5px 0 var(--black);
 }
 
 .job-card--featured {
   padding-left: 2rem;
-  border-left: 5px solid var(--green);
+  border-width: 2px;
+  border-left-width: 10px;
 }
 
-.job-card * {
-  order: 2;
+.job-card > * {
+  order: 1;
 }
 
 .job-card__logo {
-  order: 1;
+  order: 0;
   border-radius: 50%;
 }
 
@@ -93,23 +93,22 @@ const filtersStore = useFiltersStore();
   gap: 1.5rem;
 }
 
-.job-card__company {
+.job-card__container > * {
   order: 1;
-  margin: 0;
+}
+
+.job-card__company {
+  order: 0;
   font-size: 1.5rem;
 }
 
 .job-card__position {
-  margin: 0;
   font-size: 2rem;
   text-transform: capitalize;
 }
 
 .meta-list,
 .tag-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -138,7 +137,7 @@ const filtersStore = useFiltersStore();
   white-space: nowrap;
 }
 
-@media (max-width: 960px) {
+@media (width < 960px) {
   .job-card {
     grid-template-columns: 1fr;
     position: relative;

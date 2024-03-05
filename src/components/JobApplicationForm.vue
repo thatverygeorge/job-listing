@@ -1,10 +1,10 @@
 <script setup>
-import { ref } from "vue";
-import IconClose from "@/components/icons/IconClose.vue";
+import { ref } from 'vue';
+import IconClose from '@/components/icons/IconClose.vue';
 
-const ERROR_MESSAGE = "Companies usually prefer PDFs, but you do you.";
+const ERROR_MESSAGE = 'Companies usually prefer PDFs, but you do you.';
 
-defineEmits(["close-modal"]);
+defineEmits(['close-modal']);
 
 const dialog = ref(null);
 const error = ref(null);
@@ -14,7 +14,7 @@ function showError() {
 }
 
 function hideError() {
-  error.value.textContent = "";
+  error.value.textContent = '';
 }
 
 function sendApplication(evt) {
@@ -27,7 +27,7 @@ function sendApplication(evt) {
 function handleUpload(evt) {
   const file = evt.target.files[0];
   const fileName = file.name.toLowerCase();
-  const isPDF = fileName.endsWith("pdf");
+  const isPDF = fileName.endsWith('pdf');
 
   if (!isPDF) {
     showError();
@@ -43,22 +43,22 @@ defineExpose({ dialog });
   <dialog class="modal" ref="dialog">
     <form class="form" @submit="sendApplication" method="dialog" aria-label="application">
       <div>
-        <label for="name">Name</label>
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name" required="true" />
       </div>
 
       <div>
-        <label for="email">Email</label>
+        <label for="email">Email:</label>
         <input type="email" id="email" name="email" required="true" />
       </div>
 
       <div>
-        <label for="cover-letter">Cover letter</label>
+        <label for="cover-letter">Cover letter:</label>
         <textarea id="cover-letter" name="cover-letter" rows="5"></textarea>
       </div>
 
       <div>
-        <label for="resume">Upload your resume</label>
+        <label for="resume">Upload your resume:</label>
         <input
           type="file"
           id="resume"
@@ -88,12 +88,12 @@ defineExpose({ dialog });
 
 <style scoped>
 .modal {
+  min-width: 30rem;
   width: 60rem;
   max-height: 60rem;
   padding: 2rem 7rem 2rem 2rem;
-  border: 1px solid var(--green);
+  border: 2px solid var(--green);
   border-radius: 5px;
-  box-shadow: 5px 5px 0 var(--black);
   position: relative;
   overscroll-behavior: none;
 }
@@ -128,7 +128,7 @@ defineExpose({ dialog });
   border-radius: 5px;
 }
 
-.form input:invalid {
+.form input:user-invalid {
   border-color: var(--red);
 }
 
@@ -146,6 +146,10 @@ defineExpose({ dialog });
 .form__error {
   font-size: 1.5rem;
   color: var(--red);
+}
+
+.form__button--send {
+  max-width: 100%;
 }
 
 .modal__button--close {
@@ -169,9 +173,8 @@ defineExpose({ dialog });
   }
 }
 
-@media (max-width: 960px) {
+@media (width < 960px) {
   .modal {
-    min-width: 30rem;
     width: 90%;
   }
 }

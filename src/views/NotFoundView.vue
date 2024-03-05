@@ -4,24 +4,24 @@ import { RouterLink } from 'vue-router';
 
 <template>
   <section class="not-found" aria-labelledby="not-found-heading">
-    <h2 class="not-found__heading" id="not-found-heading">404. Page not found</h2>
-    <RouterLink class="not-found__link" to="/">go home</RouterLink>
+    <h2 id="not-found-heading">404. Page not found</h2>
+    <RouterLink :to="{ name: 'home' }">go home</RouterLink>
   </section>
 </template>
 
 <style scoped>
 .not-found {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
+  gap: 2rem;
   align-items: center;
 }
 
-.not-found__heading {
+.not-found h2 {
   font-size: 2rem;
 }
 
-.not-found__link {
+.not-found a {
   font-size: 1.5rem;
 }
 </style>

@@ -9,10 +9,10 @@ const filtersStore = useFiltersStore();
   <section
     class="filters"
     aria-labelledby="filters-heading"
-    :style="{ visibility: filtersStore.filters.length > 0 ? 'visible' : 'hidden' }"
+    :style="{ display: filtersStore.filters.length > 0 ? 'grid' : 'none' }"
   >
     <h2 class="visually-hidden" id="filters-heading">current filters</h2>
-    <ul class="filters__list" role="list">
+    <ul class="filters__list">
       <li class="filters__item" v-for="item in filtersStore.filters" :key="item">
         <span>{{ item }}</span>
         <button
@@ -39,20 +39,15 @@ const filtersStore = useFiltersStore();
 
 <style scoped>
 .filters {
-  padding: 1rem;
   background-color: var(--white);
-  border-radius: 5px;
-  display: flex;
-  align-items: flex-start;
+  grid-template-columns: 1fr max-content;
   gap: 2rem;
-  box-shadow: 5px 5px 0 var(--black);
-  transform: translateY(-50%);
 }
 
 .filters__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  padding: 1rem;
+  border: 1px solid var(--black);
+  border-radius: 5px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
@@ -65,13 +60,12 @@ const filtersStore = useFiltersStore();
   align-items: center;
   border: 1px solid var(--green);
   border-radius: 5px;
-  color: var(--green);
+  color: var(--black);
   overflow: hidden;
 }
 
 .filters__item:focus-within {
   border-color: var(--black);
-  color: var(--black);
 }
 
 .filters__item:focus-within .filters__button--remove {
@@ -88,7 +82,6 @@ const filtersStore = useFiltersStore();
 }
 
 .filters__button--remove {
-  height: 24px;
   background-color: var(--green);
   padding: 0;
   border: none;
@@ -107,7 +100,6 @@ const filtersStore = useFiltersStore();
 }
 
 .filters__button--clear {
-  margin-left: auto;
-  flex-shrink: 0;
+  border-color: var(--black);
 }
 </style>

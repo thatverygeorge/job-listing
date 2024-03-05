@@ -14,7 +14,7 @@ const numberOfJobsToShowStore = useNumberOfJobsToShowStore();
       Results: {{ jobsStore.filteredJobs.length }}
     </span>
 
-    <ul class="jobs__list" role="list">
+    <ul class="jobs__list">
       <li
         class="jobs__item"
         v-for="job in jobsStore.filteredJobs.slice(0, numberOfJobsToShowStore.numberOfJobsToShow)"
@@ -39,31 +39,30 @@ const numberOfJobsToShowStore = useNumberOfJobsToShowStore();
 .jobs {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 }
+
 .jobs__result {
   font-size: 2rem;
 }
 
 .jobs__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 .jobs__button--show-more {
   max-width: 100%;
 }
 
-@media (max-width: 960px) {
-  .jobs {
-    gap: calc(3rem + 32px);
+@media (width < 960px) {
+  .jobs__result {
+    margin-bottom: 32px;
   }
+
   .jobs__list {
-    gap: calc(3rem + 32px);
+    gap: calc(2rem + 32px);
   }
 }
 </style>
